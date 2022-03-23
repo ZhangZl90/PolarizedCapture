@@ -1,0 +1,132 @@
+arena\_api package
+==================
+
+Submodules
+----------
+
+arena\_api.arena\_api\_config module
+------------------------------------
+
+.. automodule:: arena_api.arena_api_config
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+- arena_api is build on the C API (ArenaC) for ArenaSDK. arena_api loads
+  ArenaC binary and its dependencies automatically from ArenaSDK default
+  installation directory. To load ArenaC binary from a custom location
+  add the full path to ArenaC binary as a value to proper key in the dictionary.
+  The dictionary name must be ``ARENAC_CUSTOM_PATHS`` and must have all of
+  the following keys:
+
+   'python32_win' :
+       - used to point Python 32 on Windows to load 32 bits ArenaC binary
+       - if this key has a value of empty string, arena_api loads
+         '<Installation Dir>\\Win32Release\\ArenaC_v140.dll'
+
+   'python64_win' :
+       - used to point Python 64 on Windows to load 64 bits ArenaC binary
+       - if this key has a value of empty string, arena_api loads
+         '<Installation Dir>\\x64Release\\ArenaC_v140.dll'
+
+   'python32_lin' :
+       - used to point Python 32 on Linux to load 32 bits ArenaC binary
+       - if this key has a value of empty string, arena_api uses the pathes in
+         '/etc/ld.so.conf.d/Arena_SDK.conf' to find the ArenaC shared object.
+
+   'python64_lin' :
+       - used to point Python 64 on Linux to load 64 bits ArenaC binary
+       - if this key has a value of empty string, arena_api uses the pathes in
+         '/etc/ld.so.conf.d/Arena_SDK.conf' to find the ArenaC shared object.
+
+ Note:
+  - If the library path assigned, to any of the keys, does not
+    exists a FileNotFoundError exception will rise
+  - Linux keys have been tested on Ubuntu 16.04 LTS
+  - To use the installed arena, give the key a value of empty string ''
+  - If ArenaSDK is not installed in the default location ,
+    'C:\Program Files\Lucid Vision Labs\Arena SDK', by the installer , it is
+    not necessary to add the non-default installation path to the custom paths.
+
+
+arena\_api.buffer module
+------------------------
+
+.. automodule:: arena_api.buffer
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+arena\_api.callback module
+--------------------------
+
+.. automodule:: arena_api.callback
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+arena\_api.enums module
+-----------------------
+
+.. automodule:: arena_api.enums
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+arena\_api.system module
+------------------------
+
+.. automodule:: arena_api.system
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+arena\_api._device module
+------------------------
+
+.. automodule:: arena_api._device
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+arena\_api._node module
+------------------------
+
+.. automodule:: arena_api._node
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+arena\_api._nodemap module
+------------------------
+
+.. automodule:: arena_api._nodemap
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+arena\_api.version module
+-------------------------
+
+.. automodule:: arena_api.version
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+- arena_api is a wrapper built on top of ArenaC library, so the package
+  uses 'ArenaCd_v140.dll' or libarenac.so. The ArenaC binary has different
+  versions for different platforms. Here is a way to know the minimum and
+  maximum version of ArenaC supported by the current package. This could
+  help in deciding whether to update arena_api or ArenaC.
+
+>>> pprint(arena_api.version.supported_dll_versions)
+
+- for the current platform the key 'this_platform' key can be used
+
+>>> pprint(arena_api.version.supported_dll_versions['this_platform'])
+
+- print loaded ArenaC and SaveC binaries versions
+
+>>> pprint(arena_api.version.loaded_binary_versions)
+
+
